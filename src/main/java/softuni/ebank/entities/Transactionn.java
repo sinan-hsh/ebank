@@ -5,14 +5,14 @@ import java.math.BigDecimal;
 
 @Entity
 @Table(name = "transaction")
-public class Transaction {
+public class Transactionn {
     private Long id;
     private String type;
     private BankAccount from;
     private BankAccount to;
     private BigDecimal amount;
 
-    public Transaction(){}
+    public Transactionn(){}
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

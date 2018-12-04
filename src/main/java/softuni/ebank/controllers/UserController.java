@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import softuni.ebank.bindingModels.UserBindingModel;
 import softuni.ebank.entities.Role;
-import softuni.ebank.entities.Transaction;
+import softuni.ebank.entities.Transactionn;
 import softuni.ebank.entities.User;
 import softuni.ebank.repositories.RoleRepository;
 import softuni.ebank.repositories.TransactionRepository;
@@ -102,7 +102,7 @@ public class UserController {
                     .stream()
                     .filter(t -> t.getFrom().getOwner().getUsername().equals(principal.getName())
                         || t.getTo().getOwner().getUsername().equals(principal.getName()))
-                    .sorted(Comparator.comparing(Transaction::getType))
+                    .sorted(Comparator.comparing(Transactionn::getType))
                     .collect(Collectors.toList()));
 
         return "fragments/layout";

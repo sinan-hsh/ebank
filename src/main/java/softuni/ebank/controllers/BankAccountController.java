@@ -9,6 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import softuni.ebank.bindingModels.BankAccountBindingModel;
 import softuni.ebank.entities.BankAccount;
+import softuni.ebank.entities.Transactionn;
 import softuni.ebank.entities.User;
 
 import softuni.ebank.repositories.BankAccountRepository;
@@ -120,7 +121,7 @@ public class BankAccountController {
 
         bankAccount.setBalance(bankAccount.getBalance().add(bankAccountBindingModel.getAmount()));
 
-        Transaction transaction = new Transaction();
+        Transactionn transaction = new Transactionn();
         transaction.setType("DEPOSIT");
         transaction.setFrom(bankAccount);
         transaction.setTo(bankAccount);
@@ -162,7 +163,7 @@ public class BankAccountController {
         }
         bankAccount.setBalance(bankAccount.getBalance().subtract(bankAccountBindingModel.getAmount()));
 
-        Transaction transaction = new Transaction();
+        Transactionn transaction = new Transactionn();
         transaction.setType("WITHDRAW");
         transaction.setFrom(bankAccount);
         transaction.setTo(bankAccount);
@@ -196,7 +197,7 @@ public class BankAccountController {
 
     private boolean transferAmount(BankAccountBindingModel bankAccountBindingModel) {
         BankAccount from = this.bankAccountRepository.findById(bankAccountBindingModel.getId()).orElse(null);
-        BankAccount to = this.bankAccountRepository.findById(bankAccountBindingModel.getReceiverId()).orElse(null);
+        BankAccount to = this.bankAccountRepository.findById(Long.valueOf(bankAccountBindingModel.getReceiverId())).orElse(null);
 
         if (from == null || to == null) {
             return false;
