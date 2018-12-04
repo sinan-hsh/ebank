@@ -92,11 +92,11 @@ public class UserController {
         return "fragments/layout";
     }
 
-    @GetMapping("/transaction")
+    @GetMapping("/transactions")
     @PreAuthorize("isAuthenticated()")
     public String listTransactions(Principal principal, Model model){
         model.addAttribute("username", principal.getName());
-        model.addAttribute("view", "users/transaction");
+        model.addAttribute("view", "users/transactions");
         model.addAttribute("transactions",
                 this.transactionRepository.findAll()
                     .stream()
